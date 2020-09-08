@@ -26,7 +26,7 @@ module IssueViewColumnsIssuesHelper
       css << " idnt idnt-#{level}" if level > 0
 
       field_content = content_tag("td", check_box_tag("ids[]", child.id, false, id: nil), class: "checkbox") +
-                      content_tag("td", link_to_issue(child, project: (issue.project_id != child.project_id)), class: "subject", style: "width: 30%")
+                      content_tag("td", link_to_issue(child, project: (issue.project_id != child.project_id)), class: "subject", style: "width: 30%;white-space: nowrap;")
 
       columns_list.each do |column|
         field_content << content_tag("td", column_content(column, child), class: "#{column.css_classes}")
@@ -78,7 +78,7 @@ module IssueViewColumnsIssuesHelper
                                         class: "icon-only icon-link-break") : ""
 
       field_content = content_tag("td", check_box_tag("ids[]", other_issue.id, false, id: nil), class: "checkbox") +
-                      content_tag("td", relation.to_s(@issue) { |other| link_to_issue(other, project: Setting.cross_project_issue_relations?) }.html_safe, class: "subject", style: "width: 30%") +
+                      content_tag("td", relation.to_s(@issue) { |other| link_to_issue(other, project: Setting.cross_project_issue_relations?) }.html_safe, class: "subject", style: "width: 30%;white-space: nowrap;") +
                       content_tag("td", other_issue.status, class: "status")
 
       columns_list.each do |column|
